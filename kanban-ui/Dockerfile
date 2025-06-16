@@ -8,6 +8,8 @@ RUN npm run build
 
 ### STAGE 2: Run ###
 FROM nginx:1.17.1-alpine
-COPY default.conf /etc/nginx/conf.d/default.conf
+COPY default.conf.template /etc/nginx/conf.d/default.conf.template
 COPY --from=build /usr/src/app/dist/kanban-ui /usr/share/nginx/html
 EXPOSE 80
+
+CMD sh -c 'envsubst < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -g "daemon off;"'

@@ -1,0 +1,20 @@
+server {
+    listen 80;
+    server_name kanban-ui;
+    root /usr/share/nginx/html;
+    index index.html index.html;
+
+    location /api/kanbans {
+        proxy_pass ${APP_URL}/api/kanbans;
+    }
+
+    location /api/tasks {
+        proxy_pass ${APP_URL}/api/tasks;
+    }
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}
+
+

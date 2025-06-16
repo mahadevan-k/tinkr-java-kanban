@@ -62,6 +62,8 @@ services:
       memory: 512
       network:
         public: true  # Indicates this service is accessible in public subnets
+      environment:
+        - APP_URL=<url:app:8080>
       ports:
         backend-8080:
           port: 8080
@@ -73,7 +75,8 @@ services:
             path: /
             retries: 3
             success_code: 200-399
-
+    environment:
+      - APP_URL=http://app:8080
     ports:
       - 4200:80
     links:
