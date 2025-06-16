@@ -65,8 +65,8 @@ services:
       environment:
         - APP_URL=<url:app:8080>
       ports:
-        backend-8080:
-          port: 8080
+        kanban-ui-4200:
+          port: 4200
           protocol: http
           public: true
           healthcheck:
